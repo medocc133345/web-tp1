@@ -1,0 +1,35 @@
+<!-- templates/game.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeu du Pendu - Partie en cours</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Bonjour, {{.Username}}!</h1>
+        <h2 class="text-center">Niveau : {{.Difficulty | title}}</h2>
+        <div class="text-center my-4">
+            <img src="/static/images/hangman{{ subtract 6 .AttemptsLeft }}.png" alt="Hangman" class="img-fluid" style="max-width: 200px;">
+        </div>
+        <p class="text-center">Mot à deviner : <strong>{{.DisplayWord}}</strong></p>
+        <p class="text-center">Tentatives restantes : <strong>{{.AttemptsLeft}}</strong></p>
+        <p class="text-center">Lettres essayées : <strong>{{range .TriedLetters}}{{.}} {{end}}</strong></p>
+        {{if .Message}}
+            <p class="text-center text-danger">{{.Message}}</p>
+        {{end}}
+        <form action="/play" method="POST" class="form-inline justify-content-center mt-4">
+            <div class="form-group mb-2">
+                <label for="guess" class="sr-only">Entrez une lettre ou un mot :</label>
+                <input type="text" id="guess" name="guess" class="form-control" placeholder="Lettre ou Mot" maxlength="20" required>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2 ml-2">Soumettre</button>
+        </form>
+        <form action="/hint" method="POST" class="text-center mt-3">
+            <button type="submit" class="btn btn-warning">Obtenir un indice</button>
+        </form>
+    </div>
+</body>
+</html>

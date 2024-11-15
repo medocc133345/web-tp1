@@ -1,0 +1,52 @@
+<!-- templates/scores.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeu du Pendu - Scores</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Scores</h1>
+        {{if .}}
+            <table class="table table-striped mt-4">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Pseudo</th>
+                        <th>Difficulté</th>
+                        <th>Mot</th>
+                        <th>Résultat</th>
+                        <th>Tentatives Restantes</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{range .}}
+                        <tr>
+                            <td>{{.Username}}</td>
+                            <td>{{.Difficulty | title}}</td>
+                            <td>{{.Word}}</td>
+                            <td>
+                                {{if .Won}}
+                                    <span class="badge badge-success">Gagné</span>
+                                {{else}}
+                                    <span class="badge badge-danger">Perdu</span>
+                                {{end}}
+                            </td>
+                            <td>{{.Attempts}}</td>
+                            <td>{{.Date.Format "2006-01-02 15:04:05"}}</td>
+                        </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        {{else}}
+            <p class="text-center">Aucun score enregistré.</p>
+        {{end}}
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-primary">Revenir à l'Accueil</a>
+        </div>
+    </div>
+</body>
+</html>

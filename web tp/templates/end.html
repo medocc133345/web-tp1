@@ -1,0 +1,27 @@
+<!-- templates/end.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeu du Pendu - Fin de Partie</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        {{if .Won}}
+            <h1 class="text-center text-success">Félicitations, {{.Username}} ! Vous avez gagné !</h1>
+        {{else}}
+            <h1 class="text-center text-danger">Dommage, {{.Username}} ! Vous avez perdu.</h1>
+            <p class="text-center">Le mot était : <strong>{{.Word}}</strong></p>
+        {{end}}
+        <form action="/save-score" method="POST" class="text-center mt-4">
+            <button type="submit" class="btn btn-success">Enregistrer mon score</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="/" class="btn btn-primary">Rejouer</a>
+            <a href="/scores" class="btn btn-info">Voir les Scores</a>
+        </div>
+    </div>
+</body>
+</html>

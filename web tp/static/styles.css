@@ -1,0 +1,22 @@
+/* static/css/styles.css */
+
+/* Styles personnalisés pour le Jeu du Pendu */
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+}
+
+img {
+    transition: transform 0.3s ease-in-out;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+.alert {
+    margin-top: 20px;
+}

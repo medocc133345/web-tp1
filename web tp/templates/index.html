@@ -1,0 +1,34 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeu du Pendu - Accueil</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Bienvenue au Jeu du Pendu!</h1>
+        {{if .}}
+            <div class="alert alert-danger text-center">{{.}}</div>
+        {{end}}
+        <form action="/" method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="username">Pseudo :</label>
+                <input type="text" id="username" name="username" class="form-control" maxlength="20" required>
+            </div>
+            <div class="form-group">
+                <label for="difficulty">Niveau de difficulté :</label>
+                <select id="difficulty" name="difficulty" class="form-control" required>
+                    <option value="">-- Sélectionnez --</option>
+                    <option value="facile">Facile</option>
+                    <option value="moyen">Moyen</option>
+                    <option value="difficile">Difficile</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Commencer la Partie</button>
+        </form>
+    </div>
+</body>
+</html>
